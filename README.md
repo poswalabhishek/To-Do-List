@@ -10,4 +10,4 @@ To run the application on your local machine, follow the following steps:
 >3. run the application using `nodemon app.js` and the server will be up and running at `port 3000` by default.
 
 ### Here is a glimpse of the application.
-![To-Do List](To-Do List.png?raw=true)
+![To-Do List](To-Do List.png?raw=true "Optional Title")
