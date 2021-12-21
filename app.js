@@ -4,6 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ = require("lodash");
+const {confidential} = require('./confidential.js');
 
 const app = express();
 
@@ -12,7 +13,8 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/todolistDB", {useNewUrlParser: true});
+const uri = `mongodb+srv://poswalabhishek:${confidential.database_password}@cluster0.t0ve7.mongodb.net/${confidential.database_name}?retryWrites=true&w=majority`;
+mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const itemsSchema = {
   name: String
@@ -135,6 +137,6 @@ app.get("/about", function(req, res){
   res.render("about");
 });
 
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, function() {
   console.log("Server started on port 3000");
 });
